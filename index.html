@@ -52,11 +52,9 @@ nav a:hover{color:var(--accent)}
 /* HERO CARRUSEL */
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hslide{position:absolute;inset:0;background:center/cover no-repeat;opacity:0;transition:opacity 1.2s ease}
-.hslide.on{opacity:1;animation:pan 14s ease-in-out infinite alternate}
-@keyframes pan{from{transform:scale(1.06) translateX(-2.5%)}to{transform:scale(1.2) translateX(2.5%)}}
-@media(prefers-reduced-motion:reduce){.hslide.on{animation:none}}
-.hslide{background-size:cover;background-position:center}.hslide:nth-child(1){background-color:#1d5446}.hslide:nth-child(2){background-color:#173F35}.hslide:nth-child(3){background-color:#235f4f}.hslide:nth-child(4){background-color:#12362d}
-.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,43,36,.80),rgba(23,63,53,.52))}
+.hslide.on{opacity:1}
+.hslide:nth-child(1){background-color:#1d5446}.hslide:nth-child(2){background-color:#173F35}.hslide:nth-child(3){background-color:#235f4f}.hslide:nth-child(4){background-color:#12362d}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,43,36,.88),rgba(23,63,53,.68))}
 .hdots{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
 .hdots button{width:10px;height:10px;border-radius:50%;border:1px solid var(--accent);background:transparent;cursor:pointer;padding:0}
 .hdots button.on{background:var(--accent)}
@@ -124,6 +122,11 @@ textarea{min-height:120px;resize:vertical}
 #form-msg{color:var(--accent);font-weight:600;min-height:22px}
 #form-msg a{text-decoration:underline}
 .hp{display:none}
+.map-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:320px;border-radius:12px;border:2px solid var(--accent);background:rgba(255,255,255,.06);padding:30px;transition:background .2s}
+.map-card:hover{background:rgba(209,185,110,.15)}
+.map-card .pin{font-size:3rem}
+.map-card strong{font-size:1.5rem;text-transform:uppercase;color:var(--accent)}
+.map-card em{font-style:normal;font-weight:700;color:var(--accent);margin-top:8px}
 footer{background:#091a16;color:#A9B8B3;text-align:center;padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));font-size:.9rem}
 footer svg{width:110px;height:110px;margin-bottom:8px}
 @media(max-width:860px){
@@ -158,9 +161,9 @@ nav li a{display:block;padding:14px 0}
 </header>
 
 <section id="inicio" class="hero">
-  <!-- FOTOS: cada slide es un fondo ilustrado. Para usar fotos propias del torneo, reemplazá el background-image de cada .hslide por url('foto1.jpg'). -->
+  <!-- PARA CAMBIAR FOTOS: en cada slide agregá style="background-image:url('foto1.jpg')". Podés duplicar o borrar slides. -->
   <div class="hero-bg" id="heroBg" aria-hidden="true">
-    <div class="hslide on" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgc2xpY2UiPjxyZWN0IHg9IjAiIHdpZHRoPSIyMDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjMmE3ZDRkIi8+PHJlY3QgeD0iMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjkwMCIgZmlsbD0iIzJmOGE1NiIvPjxyZWN0IHg9IjQwMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9IiMyYTdkNGQiLz48cmVjdCB4PSI2MDAiIHdpZHRoPSIyMDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjMmY4YTU2Ii8+PHJlY3QgeD0iODAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjkwMCIgZmlsbD0iIzJhN2Q0ZCIvPjxyZWN0IHg9IjEwMDAiIHdpZHRoPSIyMDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjMmY4YTU2Ii8+PHJlY3QgeD0iMTIwMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9IiMyYTdkNGQiLz48cmVjdCB4PSIxNDAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjkwMCIgZmlsbD0iIzJmOGE1NiIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii42IiBzdHJva2Utd2lkdGg9IjciPjxyZWN0IHg9IjEwMCIgeT0iODAiIHdpZHRoPSIxNDAwIiBoZWlnaHQ9Ijc0MCIvPjxsaW5lIHgxPSI4MDAiIHkxPSI4MCIgeDI9IjgwMCIgeTI9IjgyMCIvPjxjaXJjbGUgY3g9IjgwMCIgY3k9IjQ1MCIgcj0iMTMwIi8+PHJlY3QgeD0iMTAwIiB5PSIyNzAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzYwIi8+PHJlY3QgeD0iMTMwMCIgeT0iMjcwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM2MCIvPjwvZz48Y2lyY2xlIGN4PSIxMjAwIiBjeT0iNjIwIiByPSI4MCIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjMjIyIiBzdHJva2Utd2lkdGg9IjUiLz48cG9seWdvbiBwb2ludHM9IjEyMDAsNTc1IDEyNDMsNjA2IDEyMjcsNjU3IDExNzMsNjU3IDExNTcsNjA2IiBmaWxsPSIjMjIyIi8+PC9zdmc+')"></div><div class="hslide" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgc2xpY2UiPjxyZWN0IHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjkwMCIgZmlsbD0iIzFmN2E4MCIvPjxyZWN0IHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjkwMCIgZmlsbD0iIzJhOGY4YyIgb3BhY2l0eT0iLjM1IiB5PSI0NTAiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNiIgc3Ryb2tlLXdpZHRoPSI3Ij48cmVjdCB4PSIxMDAiIHk9IjgwIiB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI3NDAiLz48bGluZSB4MT0iODAwIiB5MT0iODAiIHgyPSI4MDAiIHkyPSI4MjAiLz48cGF0aCBkPSJNMTAwIDI1MCBBMjMwIDIzMCAwIDAgMSAzMzAgNDUwIEEyMzAgMjMwIDAgMCAxIDEwMCA2NTAiLz48cGF0aCBkPSJNMTUwMCAyNTAgQTIzMCAyMzAgMCAwIDAgMTI3MCA0NTAgQTIzMCAyMzAgMCAwIDAgMTUwMCA2NTAiLz48L2c+PGcgc3Ryb2tlPSIjZThjNzZhIiBzdHJva2Utd2lkdGg9IjIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik05MDAgNzgwIEwxMTgwIDMzMCBRMTIwMCAyOTAgMTI1MCAzMDAiLz48cGF0aCBkPSJNMTM1MCA3ODAgTDEwOTAgMzMwIFExMDcwIDI5MCAxMDIwIDMwMCIvPjwvZz48Y2lyY2xlIGN4PSIxMTM1IiBjeT0iNjEwIiByPSIzNCIgZmlsbD0iI2YyZjJmMiIvPjwvc3ZnPg==')"></div><div class="hslide" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgc2xpY2UiPjxyZWN0IHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjkwMCIgZmlsbD0iIzE3M0YzNSIvPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNEMUI5NkUiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgwIDAgMCkiLz48cmVjdCB4PSIxMzciIHk9Ijg5IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMjMgMTM3IDg5KSIvPjxyZWN0IHg9IjI3NCIgeT0iMTc4IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZTg3ODVhIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoNDYgMjc0IDE3OCkiLz48cmVjdCB4PSI0MTEiIHk9IjI2NyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iIzZmYzNhMCIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDY5IDQxMSAyNjcpIi8+PHJlY3QgeD0iNTQ4IiB5PSIzNTYiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNEMUI5NkUiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg5MiA1NDggMzU2KSIvPjxyZWN0IHg9IjY4NSIgeT0iNDQ1IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMTE1IDY4NSA0NDUpIi8+PHJlY3QgeD0iODIyIiB5PSI1MzQiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNlODc4NWEiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgxMzggODIyIDUzNCkiLz48cmVjdCB4PSI5NTkiIHk9IjYyMyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iIzZmYzNhMCIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDE2MSA5NTkgNjIzKSIvPjxyZWN0IHg9IjEwOTYiIHk9IjcxMiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI0QxQjk2RSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDE4NCAxMDk2IDcxMikiLz48cmVjdCB4PSIxMjMzIiB5PSI4MDEiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgyMDcgMTIzMyA4MDEpIi8+PHJlY3QgeD0iMTM3MCIgeT0iODkwIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZTg3ODVhIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMjMwIDEzNzAgODkwKSIvPjxyZWN0IHg9IjE1MDciIHk9Ijc5IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjNmZjM2EwIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMjUzIDE1MDcgNzkpIi8+PHJlY3QgeD0iNDQiIHk9IjE2OCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI0QxQjk2RSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDI3NiA0NCAxNjgpIi8+PHJlY3QgeD0iMTgxIiB5PSIyNTciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgyOTkgMTgxIDI1NykiLz48cmVjdCB4PSIzMTgiIHk9IjM0NiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2U4Nzg1YSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDMyMiAzMTggMzQ2KSIvPjxyZWN0IHg9IjQ1NSIgeT0iNDM1IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjNmZjM2EwIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMzQ1IDQ1NSA0MzUpIi8+PHJlY3QgeD0iNTkyIiB5PSI1MjQiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNEMUI5NkUiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgzNjggNTkyIDUyNCkiLz48cmVjdCB4PSI3MjkiIHk9IjYxMyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDM5MSA3MjkgNjEzKSIvPjxyZWN0IHg9Ijg2NiIgeT0iNzAyIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZTg3ODVhIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoNDE0IDg2NiA3MDIpIi8+PHJlY3QgeD0iMTAwMyIgeT0iNzkxIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjNmZjM2EwIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoNDM3IDEwMDMgNzkxKSIvPjxyZWN0IHg9IjExNDAiIHk9Ijg4MCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI0QxQjk2RSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDQ2MCAxMTQwIDg4MCkiLz48cmVjdCB4PSIxMjc3IiB5PSI2OSIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDQ4MyAxMjc3IDY5KSIvPjxyZWN0IHg9IjE0MTQiIHk9IjE1OCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2U4Nzg1YSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDUwNiAxNDE0IDE1OCkiLz48cmVjdCB4PSIxNTUxIiB5PSIyNDciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiM2ZmMzYTAiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg1MjkgMTU1MSAyNDcpIi8+PHJlY3QgeD0iODgiIHk9IjMzNiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI0QxQjk2RSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDU1MiA4OCAzMzYpIi8+PHJlY3QgeD0iMjI1IiB5PSI0MjUiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg1NzUgMjI1IDQyNSkiLz48cmVjdCB4PSIzNjIiIHk9IjUxNCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2U4Nzg1YSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDU5OCAzNjIgNTE0KSIvPjxyZWN0IHg9IjQ5OSIgeT0iNjAzIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjNmZjM2EwIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoNjIxIDQ5OSA2MDMpIi8+PHJlY3QgeD0iNjM2IiB5PSI2OTIiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNEMUI5NkUiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg2NDQgNjM2IDY5MikiLz48cmVjdCB4PSI3NzMiIHk9Ijc4MSIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDY2NyA3NzMgNzgxKSIvPjxyZWN0IHg9IjkxMCIgeT0iODcwIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZTg3ODVhIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoNjkwIDkxMCA4NzApIi8+PHJlY3QgeD0iMTA0NyIgeT0iNTkiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiM2ZmMzYTAiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg3MTMgMTA0NyA1OSkiLz48cmVjdCB4PSIxMTg0IiB5PSIxNDgiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNEMUI5NkUiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg3MzYgMTE4NCAxNDgpIi8+PHJlY3QgeD0iMTMyMSIgeT0iMjM3IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoNzU5IDEzMjEgMjM3KSIvPjxyZWN0IHg9IjE0NTgiIHk9IjMyNiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2U4Nzg1YSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDc4MiAxNDU4IDMyNikiLz48cmVjdCB4PSIxNTk1IiB5PSI0MTUiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiM2ZmMzYTAiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg4MDUgMTU5NSA0MTUpIi8+PHJlY3QgeD0iMTMyIiB5PSI1MDQiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNEMUI5NkUiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg4MjggMTMyIDUwNCkiLz48cmVjdCB4PSIyNjkiIHk9IjU5MyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDg1MSAyNjkgNTkzKSIvPjxyZWN0IHg9IjQwNiIgeT0iNjgyIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZTg3ODVhIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoODc0IDQwNiA2ODIpIi8+PHJlY3QgeD0iNTQzIiB5PSI3NzEiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiM2ZmMzYTAiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg4OTcgNTQzIDc3MSkiLz48cmVjdCB4PSI2ODAiIHk9Ijg2MCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI0QxQjk2RSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDkyMCA2ODAgODYwKSIvPjxyZWN0IHg9IjgxNyIgeT0iNDkiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSg5NDMgODE3IDQ5KSIvPjxyZWN0IHg9Ijk1NCIgeT0iMTM4IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZTg3ODVhIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoOTY2IDk1NCAxMzgpIi8+PHJlY3QgeD0iMTA5MSIgeT0iMjI3IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjNmZjM2EwIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoOTg5IDEwOTEgMjI3KSIvPjxyZWN0IHg9IjEyMjgiIHk9IjMxNiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI0QxQjk2RSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDEwMTIgMTIyOCAzMTYpIi8+PHJlY3QgeD0iMTM2NSIgeT0iNDA1IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMTAzNSAxMzY1IDQwNSkiLz48cmVjdCB4PSIxNTAyIiB5PSI0OTQiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNlODc4NWEiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgxMDU4IDE1MDIgNDk0KSIvPjxyZWN0IHg9IjM5IiB5PSI1ODMiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiM2ZmMzYTAiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgxMDgxIDM5IDU4MykiLz48cmVjdCB4PSIxNzYiIHk9IjY3MiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI0QxQjk2RSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDExMDQgMTc2IDY3MikiLz48cmVjdCB4PSIzMTMiIHk9Ijc2MSIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDExMjcgMzEzIDc2MSkiLz48cmVjdCB4PSI0NTAiIHk9Ijg1MCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2U4Nzg1YSIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDExNTAgNDUwIDg1MCkiLz48cmVjdCB4PSI1ODciIHk9IjM5IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjNmZjM2EwIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMTE3MyA1ODcgMzkpIi8+PHJlY3QgeD0iNzI0IiB5PSIxMjgiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNEMUI5NkUiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgxMTk2IDcyNCAxMjgpIi8+PHJlY3QgeD0iODYxIiB5PSIyMTciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgxMjE5IDg2MSAyMTcpIi8+PHJlY3QgeD0iOTk4IiB5PSIzMDYiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNlODc4NWEiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgxMjQyIDk5OCAzMDYpIi8+PHJlY3QgeD0iMTEzNSIgeT0iMzk1IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjNmZjM2EwIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMTI2NSAxMTM1IDM5NSkiLz48cmVjdCB4PSIxMjcyIiB5PSI0ODQiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNEMUI5NkUiIG9wYWNpdHk9Ii43IiB0cmFuc2Zvcm09InJvdGF0ZSgxMjg4IDEyNzIgNDg0KSIvPjxyZWN0IHg9IjE0MDkiIHk9IjU3MyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iNCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjciIHRyYW5zZm9ybT0icm90YXRlKDEzMTEgMTQwOSA1NzMpIi8+PHJlY3QgeD0iMTU0NiIgeT0iNjYyIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjZTg3ODVhIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMTMzNCAxNTQ2IDY2MikiLz48cmVjdCB4PSI4MyIgeT0iNzUxIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjNmZjM2EwIiBvcGFjaXR5PSIuNyIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1NyA4MyA3NTEpIi8+PHBvbHlnb24gcG9pbnRzPSIxMDIwLDUwMCA5NjAsNzgwIDEwNDAsNzIwIDEwODAsNTIwIiBmaWxsPSIjYzA0NjNjIi8+PHBvbHlnb24gcG9pbnRzPSIxMTgwLDUwMCAxMjQwLDc4MCAxMTYwLDcyMCAxMTIwLDUyMCIgZmlsbD0iIzJmNmZiMCIvPjxjaXJjbGUgY3g9IjExMDAiIGN5PSI0MjAiIHI9IjE0MCIgZmlsbD0iI0QxQjk2RSIvPjxjaXJjbGUgY3g9IjExMDAiIGN5PSI0MjAiIHI9IjEwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEE2RDFGIiBzdHJva2Utd2lkdGg9IjEwIi8+PHBvbHlnb24gcG9pbnRzPSIxMTAwLDM1MCAxMTE4LDM5OCAxMTcwLDQwMCAxMTMwLDQzMiAxMTQ0LDQ4MiAxMTAwLDQ1MyAxMDU2LDQ4MiAxMDcwLDQzMiAxMDMwLDQwMCAxMDgyLDM5OCIgZmlsbD0iIzhBNkQxRiIvPjwvc3ZnPg==')"></div><div class="hslide" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgc2xpY2UiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y0YzQ2YSIvPjxzdG9wIG9mZnNldD0iLjYiIHN0b3AtY29sb3I9IiNlMDgwNWEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3YTVhOGEiLz48L2xpbmVhckdyYWRpZW50PjxwYXR0ZXJuIGlkPSJuIiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMMzAgMzBNMzAgMEwwIDMwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNSIgc3Ryb2tlLXdpZHRoPSIzIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTYwMCIgaGVpZ2h0PSI2MjAiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSI0ODAiIHI9IjExMCIgZmlsbD0iI2ZmZjZkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB5PSI2MDAiIHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzJhN2Q0ZCIvPjxyZWN0IHg9Ijc2MCIgeT0iMzAwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjMyMCIgZmlsbD0idXJsKCNuKSIvPjxnIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxNiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNNzYwIDYyMFYzMDBIMTQwMFY2MjAiLz48L2c+PGcgZmlsbD0iI2YwOGEyZSI+PHBvbHlnb24gcG9pbnRzPSIzMDAsODIwIDM0MCw3MDAgMzgwLDgyMCIvPjxwb2x5Z29uIHBvaW50cz0iNTIwLDg2MCA1NjAsNzQwIDYwMCw4NjAiLz48L2c+PGNpcmNsZSBjeD0iMTA1MCIgY3k9Ijc2MCIgcj0iNTUiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzIyMiIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHBvbHlnb24gcG9pbnRzPSIxMDUwLDcyMiAxMDg2LDc0OCAxMDcyLDc5MCAxMDI4LDc5MCAxMDE0LDc0OCIgZmlsbD0iIzIyMiIvPjwvc3ZnPg==')"></div>
+    <div class="hslide on"></div><div class="hslide"></div><div class="hslide"></div><div class="hslide"></div>
   </div>
   <div class="hdots" id="hdots"></div>
   <div class="container hero-grid">
@@ -173,9 +176,7 @@ nav li a{display:block;padding:14px 0}
       </div>
     </div>
     <dl class="hero-card">
-      <div><dt>Cuándo</dt><dd>Viernes de enero y febrero 2027</dd></div>
-      <div><dt>Llegada</dt><dd>17:45 hs</dd></div>
-      <div><dt>Partidos</dt><dd>Desde las 18 hs · 20 min por tiempo</dd></div>
+      <div><dt>Cuándo</dt><dd>Enero y febrero 2027</dd></div>
       <div><dt>Torneos</dt><dd>Fútbol y Hockey</dd></div>
       <div><dt>Dónde</dt><dd>Encuentro Pilka</dd></div>
     </dl>
@@ -187,8 +188,8 @@ nav li a{display:block;padding:14px 0}
   <div class="container">
     <span class="eyebrow">Qué es Gran Match</span>
     <h2>El valor de <span>jugar</span></h2>
-    <p class="lead">Gran Match es un torneo para divertirse en comunidad: jugar con amigos y amigas, hacer compañerismo, conocer a otros equipos y vivir una noche de verano en la cancha. El resultado importa, pero lo que nos llevamos es la experiencia compartida.</p>
-    <p class="lead">Es un torneo relajado y de buena onda, con reglas, claras y para todos, que cuida los valores que hacen que el deporte valga la pena.</p>
+    <p class="lead">Gran Match es un torneo para divertirse en comunidad: jugar con amigos y amigas, hacer compañerismo, conocer a otros equipos y vivir una jornada de verano en la cancha. El resultado importa, pero lo que nos llevamos es la experiencia compartida.</p>
+    <p class="lead">Es un torneo relajado y de buena onda, con reglas claras y para todos, que cuida los valores que hacen que el deporte valga la pena.</p>
     <div class="valores">
       <div class="valor"><div class="ico">🤝</div><h3>Compañerismo</h3><p>Alentar a quienes juegan enfrente, festejar las jugadas ajenas y dar una mano: se juega con quien está al lado, no contra nadie.</p></div>
       <div class="valor"><div class="ico">👨‍👩‍👧</div><h3>Comunidad</h3><p>Familias, entrenadores, entrenadoras y equipos de Córdoba en una misma fiesta deportiva.</p></div>
@@ -200,20 +201,11 @@ nav li a{display:block;padding:14px 0}
   </div>
 </section>
 
-<section id="numeros">
-  <div class="container stats">
-    <div><strong>2</strong><span>Torneos</span></div>
-    <div><strong>2</strong><span>Meses</span></div>
-    <div><strong>4 hs</strong><span>Por jornada</span></div>
-    <div><strong>1</strong><span>Sede para todas y todos</span></div>
-  </div>
-</section>
-
 <section id="torneos">
   <div class="container">
     <span class="eyebrow">Los torneos</span>
     <h2>Dos torneos, <span>un mismo lugar</span></h2>
-    <p class="lead">Fútbol y hockey se juegan en la misma sede, los mismos viernes. Así las familias, los amigos, las amigas y los equipos comparten la jornada: una comunidad que se junta a divertirse.</p>
+    <p class="lead">Familias, amigos, amigas y equipos comparten la jornada: una comunidad que se junta a divertirse.</p>
     <div class="torneo-cards">
       <div class="tcard fut">
         <h3>⚽ Fútbol masculino</h3>
@@ -243,14 +235,13 @@ nav li a{display:block;padding:14px 0}
   <div class="container">
     <span class="eyebrow">Calendario</span>
     <h2>Una jornada en <span>Gran Match</span></h2>
-    <p class="lead">Todos los viernes, del 8 de enero al 12 de febrero. Un plan para cerrar la semana jugando con amigos y amigas y compartiendo en comunidad.</p>
+    <p class="lead">Todos los viernes, del 8 de enero al 12 de febrero de 2027. Un plan para cerrar la semana jugando con amigos y amigas y compartiendo en comunidad.</p>
     <div class="timeline">
       <div class="tl"><b>17:45</b><span>Llegada, bienvenida y armado de equipos</span></div>
       <div class="tl"><b>18:00</b><span>Arrancan los partidos: 20 minutos por tiempo</span></div>
       <div class="tl"><b>20:00</b><span>Pausa para recargar energía y compartir</span></div>
       <div class="tl"><b>22:00</b><span>Cierre de la jornada</span></div>
     </div>
-    <p class="nota" style="margin-top:12px">El cronograma del día es orientativo y se ajusta según la cantidad de equipos.</p>
     <div class="fechas" aria-label="Fechas del torneo">
       <div class="fecha"><small>Ene</small><b>8</b></div>
       <div class="fecha"><small>Ene</small><b>15</b></div>
@@ -259,7 +250,7 @@ nav li a{display:block;padding:14px 0}
       <div class="fecha"><small>Feb</small><b>5</b></div>
       <div class="fecha"><small>Feb</small><b>12</b></div>
     </div>
-    <p class="nota">Viernes del 8/1 al 12/2 de 2027. El calendario definitivo se confirma con los equipos inscriptos.</p>
+    <p class="nota">El cronograma es orientativo y se ajusta según la cantidad de equipos. El calendario definitivo se confirma con los equipos inscriptos.</p>
   </div>
 </section>
 
@@ -268,24 +259,21 @@ nav li a{display:block;padding:14px 0}
     <div>
       <span class="eyebrow" style="color:var(--accent)">La sede</span>
       <h2>Encuentro <span>Pilka</span></h2>
-      <p>Av. Vélez Sarsfield 5281, Córdoba. Fútbol y hockey en el mismo lugar, para que todos y todas compartan la jornada.</p>
+      <p>Av. Vélez Sarsfield 5281, Córdoba.</p>
+      <p>Qué llevar:</p>
       <ul class="check">
-        <li>Llegada a las 17:45: los partidos arrancan puntuales a las 18 hs</li>
         <li>Ropa deportiva cómoda y calzado apto para la cancha</li>
         <li>Canilleras (y palo y protector bucal para hockey)</li>
         <li>Botella de agua: en verano hace calor</li>
         <li>Protector solar y buen ánimo</li>
       </ul>
-      <a class="btn btn-accent" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Encuentro%20Pilka%20Av.%20V%C3%A9lez%20Sarsfield%205281%20C%C3%B3rdoba%20Argentina">Ver en Google Maps</a>
     </div>
-    <div class="hero-card">
-      <dl>
-        <div><dt>Llegada</dt><dd>17:45 hs</dd></div>
-        <div><dt>Partidos</dt><dd>Desde las 18 hs</dd></div>
-        <div><dt>Período</dt><dd>Viernes, del 8/1 al 12/2 de 2027</dd></div>
-        <div><dt>Inscripción</dt><dd>Coordinada con cada equipo</dd></div>
-      </dl>
-    </div>
+    <a class="map-card" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Encuentro%20Pilka%20Av.%20V%C3%A9lez%20Sarsfield%205281%20C%C3%B3rdoba%20Argentina">
+      <span class="pin">📍</span>
+      <strong>Encuentro Pilka</strong>
+      <span>Av. Vélez Sarsfield 5281<br>Córdoba, Argentina</span>
+      <em>Cómo llegar →</em>
+    </a>
   </div>
 </section>
 
@@ -295,7 +283,6 @@ nav li a{display:block;padding:14px 0}
     <h2>Todo lo que <span>querés saber</span></h2>
     <details><summary>¿Cómo se anota mi equipo?</summary><p>Escribinos desde la sección Contacto o por WhatsApp. Elegís la categoría y coordinamos la participación con vos.</p></details>
     <details><summary>¿Tengo que venir todas las fechas?</summary><p>Coordinamos con cada equipo las fechas que le quedan mejor dentro del calendario. Eso sí: avisanos con tiempo para poder armar los partidos entre todos y todas.</p></details>
-    <details><summary>¿Fútbol y hockey juegan el mismo día?</summary><p>Sí. Los dos torneos se juegan en la misma sede, los viernes: llegada 17:45 y partidos desde las 18 hs.</p></details>
     <details><summary>¿Es muy competitivo?</summary><p>Se juega con ganas, pero con buen clima. Lo central es divertirse, hacer compañerismo y respetar a quienes juegan enfrente.</p></details>
     <details><summary>¿Pueden venir las familias?</summary><p>¡Por supuesto! Son bienvenidas a acompañar desde el costado.</p></details>
   </div>
@@ -311,8 +298,6 @@ nav li a{display:block;padding:14px 0}
         <a class="wa" href="https://wa.me/5493517061543?text=Hola%21%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Gran%20Match." target="_blank" rel="noopener"><span class="wa-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span><span>Matías</span></a>
       </div>
       <p><strong>Email:</strong> lucasbruna89@gmail.com</p>
-      <p><strong>Sede:</strong> Encuentro Pilka, Av. Vélez Sarsfield 5281, Córdoba</p>
-      <p><strong>Horario:</strong> Llegada 17:45 · Partidos desde las 18 hs · Viernes, del 8/1 al 12/2 de 2027</p>
     </div>
     <form id="contactForm">
       <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
